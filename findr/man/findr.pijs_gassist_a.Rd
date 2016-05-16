@@ -1,3 +1,20 @@
+% Copyright 2016 Lingfei Wang
+% 
+% This file is part of Findr.
+% 
+% Findr is free software: you can redistribute it and/or modify
+% it under the terms of the GNU Affero General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% Findr is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU Affero General Public License for more details.
+% 
+% You should have received a copy of the GNU Affero General Public License
+% along with Findr.  If not, see <http://www.gnu.org/licenses/>.
+% 
 \name{findr.pijs_gassist_*}
 \alias{findr.pijs_gassist_a}
 \alias{findr.pijs_gassist_tot}
@@ -49,5 +66,9 @@ ns: Number of samples.
 findr.pij_rank_a
 }
 \examples{
-#TBA
+library(findr)
+data(geuvadis)
+# Library initialization
+a=findr.lib(loglv=12)
+ans=findr.pijs_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 }

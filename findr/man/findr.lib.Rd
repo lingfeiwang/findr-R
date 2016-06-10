@@ -31,6 +31,8 @@ findr.lib(loglv = 6, rs = 0, nth = 0)
 \arguments{
   \item{loglv}{
 Log level of library findr. Only messages whose levels are not greater than the designated log level will be printed. Level 0: critical, 1-3: errors, 4-6: warnings, 7-9: information, 10-12: debug. Default value is level 6.
+
+Note: logging is incompatible and unavailable on Windows RGui. On RGui, only return value indicates if the execution is successful. Rterm on Windows supports logging.
 }
   \item{rs}{
 Initial random seed. Zero means to use current time.

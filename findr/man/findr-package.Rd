@@ -45,6 +45,10 @@ The probability of pairwise gene regulation can be inferred with any of the foll
 
 findr.pij_rank_a
 
+findr.pij_gassist_a
+
+findr.pij_gassist_tot
+
 findr.pijs_gassist_a
 
 findr.pijs_gassist_tot
@@ -65,6 +69,8 @@ data(geuvadis)
 a=findr.lib(loglv=12)
 # Predict pairwise correlation without genotype data
 ans1=findr.pij_rank_a(geuvadis$dt,geuvadis$dt2)
-# Predict pairwise regulation with genotype data
-ans2=findr.pijs_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+# Predict pairwise regulation with genotype data with recommended test combination
+ans2=findr.pij_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+# Predict pairwise regulation with genotype data with all tests. User needs to combine test results on their own from findr output.
+ans3=findr.pijs_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 }

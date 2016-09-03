@@ -53,6 +53,10 @@ ns: Number of samples.
 }
 
 \seealso{
+findr.pij_gassist_a
+
+findr.pij_gassist_tot
+
 findr.pijs_gassist_a
 
 findr.pijs_gassist_tot

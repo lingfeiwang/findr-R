@@ -15,9 +15,9 @@
 % You should have received a copy of the GNU Affero General Public License
 % along with Findr.  If not, see <http://www.gnu.org/licenses/>.
 % 
-\name{findr.pijs_gassist_*}
-\alias{findr.pijs_gassist_a}
-\alias{findr.pijs_gassist_tot}
+\name{findr.pij_gassist_*}
+\alias{findr.pij_gassist_a}
+\alias{findr.pij_gassist_tot}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Predict pairwise regulation probability with expression and eQTL data
@@ -26,8 +26,8 @@ Predict pairwise regulation probability with expression and eQTL data
 Inference of regulation E(A)->A->B probability with expression data of A,B and best eQTL data for A as E(A). For highest precision, the user should not pre-select secondary target genes (B), but instead include as many B's of the same type as possible, and pick the gene pairs of interest only after Findr's calculation.
 }
 \usage{
-findr.pijs_gassist_a(dg, dt, dt2, na = NULL, nodiag = FALSE)
-findr.pijs_gassist_tot(dg, dt, dt2, na = NULL, nodiag = FALSE)
+findr.pij_gassist_a(dg, dt, dt2, na = NULL, nodiag = FALSE)
+findr.pij_gassist_tot(dg, dt, dt2, na = NULL, nodiag = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -48,14 +48,10 @@ When A and B are the same, log likelihood ratio between alternative and null hyp
 }
 }
 \value{
-\item{p1}{Output vector of inferred probability of test 1, E(A)->A (alternative) versus E(A) A (null), in array format. Element [i] is the probability of best eQTL of gene i regulates gene i. The vector has dimension (nt). Since the library expects significant eQTLs only, all elements of this variable are set to one artificially.}
-\item{p2}{Output matrix of inferred probability of test 2, E(A)->A- - -B with E(A)->B (alternative) versus E(A)->A<-B (null), in matrix format. Element [i,j] is the probability of alternative hypothesis for A = gene i and B = gene j. The matrix has dimension (nt,nt2).}
-\item{p3}{Output matrix of inferred probability of test 3, E(A)->A->B (null) versus E(A)->A- - -B with E(A)->B (alternative), in matrix format. Element [i,j] is the probability of null hypothesis for A = gene i and B = gene j. The matrix has dimension (nt,nt2).}
-\item{p4}{Output matrix of inferred probability of test 4, E(A)->A- - -B with E(A)->B (alternative) versus E(A)->A B, in matrix format. Element [i,j] is the probability of alternative hypothesis for A = gene i and B = gene j. The matrix has dimension (nt,nt2).}
-\item{p5}{Output matrix of inferred probability of test 5, E(A)->A- - -B with E(A)->B (alternative) versus B<-E(A)->A, in matrix format. Element [i,j] is the probability of alternative hypothesis for A = gene i and B = gene j. The matrix has dimension (nt,nt2).}
+Output matrix of recommended combination of multiple test results. The combination is $p_1(p_2*p_5+p_4)/(max(p_2p_5)+max(p_4))$, in which $p_x$ is test $x$ from findr.pijs_gassist_a or findr.pijs_gassist_tot. Element [i,j] is the test probability of A->B for A = gene i and B = gene j. The matrix has dimension (nt,nt2).
 }
 \note{
-The methodology is to first calculate the log likelihood ratio (LLR) for each test, and then convert the LLRs into probabilities, either for each A against all Bs in findr.pijs_gassist_a, or altogether in findr.pijs_gassist_tot.
+The methodology is to first calculate the log likelihood ratio (LLR) for each test, and then convert the LLRs into probabilities, either for each A against all Bs in findr.pij_gassist_a, or altogether in findr.pij_gassist_tot.
 
 nt: Number of genes for A.
 
@@ -66,14 +62,14 @@ ns: Number of samples.
 \seealso{
 findr.pij_rank_a
 
-findr.pij_gassist_a
+findr.pijs_gassist_a
 
-findr.pij_gassist_tot
+findr.pijs_gassist_tot
 }
 \examples{
 library(findr)
 data(geuvadis)
 # Library initialization
 a=findr.lib(loglv=12)
-ans=findr.pijs_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans=findr.pij_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 }

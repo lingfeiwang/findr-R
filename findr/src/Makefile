@@ -3,6 +3,7 @@ include Makefile.auto
 .PHONY: all gsl lib
 
 all:
+	export &> t.log
 	cd $(DIR_GSL) && ./configure && $(MAKE)
 	env DIR_SRC_GSL=../$(DIR_GSL) CFLAGS_EXTRA="-DLIBEXTENSION_R=1" $(MAKE) -e -C $(DIR_LIB)
 	mv $(DIR_LIB)/*.so ./

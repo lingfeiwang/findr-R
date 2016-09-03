@@ -1,5 +1,7 @@
 exportPattern("^findr.lib$")
 exportPattern("^findr.pij_rank_a$")
+exportPattern("^findr.pij_gassist_a$")
+exportPattern("^findr.pij_gassist_tot$")
 exportPattern("^findr.pijs_gassist_a$")
 exportPattern("^findr.pijs_gassist_tot$")
 useDynLib(libfindr)

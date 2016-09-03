@@ -36,7 +36,7 @@ findr.lib=function(loglv=6,rs=0,nth=0){
 	findr.libload(loglvi,rsi,nthi)
 }
 
-findr.pijs_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+findr.pijs_gassist_any=function(dg,dt,dt2,name,na=NULL,nodiag=FALSE) {
 	#Validity check
 	if(typeof(nodiag)!='logical')
 		stop('Data type of nodiag is not logical.')
@@ -68,26 +68,36 @@ findr.pijs_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
 	else
 		nd=as.integer(0)
 	#Output buffer
-	ans=list('p1'=array(as.ftype(0),ng),'p2b'=matrix(as.ftype(0),ng,nt),'p2c'=matrix(as.ftype(0),ng,nt),'p3'=matrix(as.ftype(0),ng,nt),'ret'=as.integer(0))
-	ans=.C("external_R_pijs_gassist_a",ng,nt,ns,
+	ans=list('p1'=array(as.ftype(0),ng),'p2'=matrix(as.ftype(0),ng,nt),'p3'=matrix(as.ftype(0),ng,nt),'p4'=matrix(as.ftype(0),ng,nt),'p5'=matrix(as.ftype(0),ng,nt),'ret'=as.integer(0))
+	ans=.C(name,ng,nt,ns,
 		 as.integer(dg),as.ftype(dt),as.ftype(dt2),
-		 'p1'=ans$p1,'p2b'=ans$p2b,'p2c'=ans$p2c,'p3'=ans$p3,
+		 'p1'=ans$p1,'p2'=ans$p2,'p3'=ans$p3,'p4'=ans$p4,'p5'=ans$p5,
 		 nvx,nd,'ret'=ans$ret)
 	if(ans$ret!=0)
 		stop('C library execution failed.')
-	ans=list('p1'=ans$p1,'p2b'=ans$p2b,'p2c'=ans$p2c,'p3'=ans$p3)
+	ans=list('p1'=ans$p1,'p2'=ans$p2,'p3'=ans$p3,'p4'=ans$p4,'p5'=ans$p5)
 	rownames(ans$p1)=rownames(dt)
-	rownames(ans$p2b)=rownames(dt)
-	rownames(ans$p2c)=rownames(dt)
+	rownames(ans$p2)=rownames(dt)
 	rownames(ans$p3)=rownames(dt)
-	colnames(ans$p2b)=rownames(dt2)
-	colnames(ans$p2c)=rownames(dt2)
+	rownames(ans$p4)=rownames(dt)
+	rownames(ans$p5)=rownames(dt)
+	colnames(ans$p2)=rownames(dt2)
 	colnames(ans$p3)=rownames(dt2)
+	colnames(ans$p4)=rownames(dt2)
+	colnames(ans$p5)=rownames(dt2)
 	ans
 }
 
 
+findr.pijs_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pijs_gassist_any(dg,dt,dt2,"external_R_pijs_gassist_a",na,nodiag)
+}
+
 findr.pijs_gassist_tot=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pijs_gassist_any(dg,dt,dt2,"external_R_pijs_gassist_tot",na,nodiag)
+}
+
+findr.pij_gassist_any=function(dg,dt,dt2,name,na=NULL,nodiag=FALSE) {
 	#Validity check
 	if(typeof(nodiag)!='logical')
 		stop('Data type of nodiag is not logical.')
@@ -119,22 +129,24 @@ findr.pijs_gassist_tot=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
 	else
 		nd=as.integer(0)
 	#Output buffer
-	ans=list('p1'=array(as.ftype(0),ng),'p2b'=matrix(as.ftype(0),ng,nt),'p2c'=matrix(as.ftype(0),ng,nt),'p3'=matrix(as.ftype(0),ng,nt),'ret'=as.integer(0))
-	ans=.C("external_R_pijs_gassist_tot",ng,nt,ns,
+	ans=list('p'=matrix(as.ftype(0),ng,nt),'ret'=as.integer(0))
+	ans=.C(name,ng,nt,ns,
 		 as.integer(dg),as.ftype(dt),as.ftype(dt2),
-		 'p1'=ans$p1,'p2b'=ans$p2b,'p2c'=ans$p2c,'p3'=ans$p3,
-		 nvx,nd,'ret'=ans$ret)
+		 'p'=ans$p,nvx,nd,'ret'=ans$ret)
 	if(ans$ret!=0)
 		stop('C library execution failed.')
-	ans=list('p1'=ans$p1,'p2b'=ans$p2b,'p2c'=ans$p2c,'p3'=ans$p3)
-	rownames(ans$p1)=rownames(dt)
-	rownames(ans$p2b)=rownames(dt)
-	rownames(ans$p2c)=rownames(dt)
-	rownames(ans$p3)=rownames(dt)
-	colnames(ans$p2b)=rownames(dt2)
-	colnames(ans$p2c)=rownames(dt2)
-	colnames(ans$p3)=rownames(dt2)
+	ans=ans$p
+	rownames(ans)=rownames(dt)
+	colnames(ans)=rownames(dt2)
 	ans
+}
+
+findr.pij_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist_a",na,nodiag)
+}
+
+findr.pij_gassist_tot=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist_tot",na,nodiag)
 }
 
 findr.pij_rank_a=function(dt,dt2,nodiag=FALSE) {

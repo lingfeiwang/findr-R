@@ -15,8 +15,8 @@
 % You should have received a copy of the GNU Affero General Public License
 % along with Findr.  If not, see <http://www.gnu.org/licenses/>.
 % 
-\name{findr.pij_rank_a}
-\alias{findr.pij_rank_a}
+\name{findr.pij_rank}
+\alias{findr.pij_rank}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
 Predict pairwise regulation probability with expression data
@@ -25,7 +25,7 @@ Predict pairwise regulation probability with expression data
 Inference of pairwise correlation A- - -B probability between gene sets {A} and {B}, with expression data only, by converting log likelihood ratios to probabilities per A.
 }
 \usage{
-findr.pij_rank_a(dt, dt2, nodiag = FALSE)
+findr.pij_rank(dt, dt2, nodiag = FALSE)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -53,18 +53,16 @@ ns: Number of samples.
 }
 
 \seealso{
-findr.pij_gassist_a
+findr.pij_gassist
 
-findr.pij_gassist_tot
+findr.pij_gassist_trad
 
-findr.pijs_gassist_a
-
-findr.pijs_gassist_tot
+findr.pijs_gassist
 }
 \examples{
 library(findr)
 data(geuvadis)
 # Library initialization
 a=findr.lib(loglv=12)
-ans=findr.pij_rank_a(geuvadis$dt,geuvadis$dt2)
+ans=findr.pij_rank(geuvadis$dt,geuvadis$dt2)
 }

@@ -1,20 +1,3 @@
-# Copyright 2016 Lingfei Wang
-# 
-# This file is part of Findr.
-# 
-# Findr is free software: you can redistribute it and/or modify
-# it under the terms of the GNU Affero General Public License as published by
-# the Free Software Foundation, either version 3 of the License, or
-# (at your option) any later version.
-# 
-# Findr is distributed in the hope that it will be useful,
-# but WITHOUT ANY WARRANTY; without even the implied warranty of
-# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-# GNU Affero General Public License for more details.
-# 
-# You should have received a copy of the GNU Affero General Public License
-# along with Findr.  If not, see <http://www.gnu.org/licenses/>.
-# 
 findr.gtype='integer'
 findr.ftype='double'
 as.gtype=as.integer
@@ -88,13 +71,8 @@ findr.pijs_gassist_any=function(dg,dt,dt2,name,na=NULL,nodiag=FALSE) {
 	ans
 }
 
-
-findr.pijs_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
-	findr.pijs_gassist_any(dg,dt,dt2,"external_R_pijs_gassist_a",na,nodiag)
-}
-
-findr.pijs_gassist_tot=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
-	findr.pijs_gassist_any(dg,dt,dt2,"external_R_pijs_gassist_tot",na,nodiag)
+findr.pijs_gassist=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pijs_gassist_any(dg,dt,dt2,"external_R_pijs_gassist",na,nodiag)
 }
 
 findr.pij_gassist_any=function(dg,dt,dt2,name,na=NULL,nodiag=FALSE) {
@@ -141,15 +119,15 @@ findr.pij_gassist_any=function(dg,dt,dt2,name,na=NULL,nodiag=FALSE) {
 	ans
 }
 
-findr.pij_gassist_a=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
-	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist_a",na,nodiag)
+findr.pij_gassist=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist",na,nodiag)
 }
 
-findr.pij_gassist_tot=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
-	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist_tot",na,nodiag)
+findr.pij_gassist_trad=function(dg,dt,dt2,na=NULL,nodiag=FALSE) {
+	findr.pij_gassist_any(dg,dt,dt2,"external_R_pij_gassist_trad",na,nodiag)
 }
 
-findr.pij_rank_a=function(dt,dt2,nodiag=FALSE) {
+findr.pij_rank=function(dt,dt2,nodiag=FALSE) {
 	#Validity check
 	if(typeof(nodiag)!='logical')
 		stop('Data type of nodiag is not logical.')
@@ -171,7 +149,7 @@ findr.pij_rank_a=function(dt,dt2,nodiag=FALSE) {
 	#Output buffer
 	ans=list('p'=matrix(as.ftype(0),ng,nt),
 					 'ret'=as.integer(0))
-	ans=.C("external_R_pij_rank_a",ng,nt,ns,
+	ans=.C("external_R_pij_rank",ng,nt,ns,
 		 as.ftype(dt),as.ftype(dt2),
 		 'p'=ans$p,nd,'ret'=ans$ret)
 	if(ans$ret!=0)

@@ -43,15 +43,13 @@ findr.lib
 
 The probability of pairwise gene regulation can be inferred with any of the following functions:
 
-findr.pij_rank_a
+findr.pij_rank
 
-findr.pij_gassist_a
+findr.pij_gassist
 
-findr.pij_gassist_tot
+findr.pij_gassist_trad
 
-findr.pijs_gassist_a
-
-findr.pijs_gassist_tot
+findr.pijs_gassist
 }
 \author{
 \packageAuthor{findr}
@@ -59,7 +57,7 @@ findr.pijs_gassist_tot
 Maintainer: \packageMaintainer{findr}
 }
 \references{
-Lingfei Wang and Tom Michoel. Improved microRNA target predictions from genetics of gene expression data with Findr (submitted). 2016.
+Lingfei Wang and Tom Michoel. (In preparation). 2016.
 }
 \keyword{ package }
 \examples{
@@ -68,9 +66,9 @@ data(geuvadis)
 # Library initialization
 a=findr.lib(loglv=12)
 # Predict pairwise correlation without genotype data
-ans1=findr.pij_rank_a(geuvadis$dt,geuvadis$dt2)
+ans1=findr.pij_rank(geuvadis$dt,geuvadis$dt2)
 # Predict pairwise regulation with genotype data with recommended test combination
-ans2=findr.pij_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans2=findr.pij_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 # Predict pairwise regulation with genotype data with all tests. User needs to combine test results on their own from findr output.
-ans3=findr.pijs_gassist_a(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans3=findr.pijs_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 }

@@ -1,4 +1,4 @@
-% Copyright 2016 Lingfei Wang
+% Copyright 2016, 2017 Lingfei Wang
 % 
 % This file is part of Findr.
 % 
@@ -57,7 +57,8 @@ findr.pijs_gassist
 Maintainer: \packageMaintainer{findr}
 }
 \references{
-Lingfei Wang and Tom Michoel. (In preparation). 2016.
+Lingfei Wang and Tom Michoel, Efficient causal inference with hidden confounders from
+  genome-transcriptome variation data (In preparation). 2016.
 }
 \keyword{ package }
 \examples{

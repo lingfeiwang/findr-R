@@ -20,18 +20,18 @@
 \alias{findr}
 \docType{package}
 \title{
-\packageTitle{findr}
+Fast Inference of Networks from Directed Regulations
 }
 \description{
-\packageDescription{findr}
+This is an R package of findr library. Findr (Fast Inference of Networks from Directed Regulations) is a C library for the inference of gene regulatory network structure. Findr performs causal inferences of pairwise gene regulations based on genotype and gene expression datasets or from gene expression dataset alone. Findr then bases on the causal inference results as prior edge information to construct a directed acyclic graph. A sparse Bayesian network can then be inferred with the R package lassopv to produce the p-value of every possible regulation. Methodologies can be found in publication (Wang and Michoel, 2016, Wang and Michoel, 2017).
 }
 \details{
 
-The DESCRIPTION file:
-\packageDESCRIPTION{findr}
-\packageIndices{findr}
+%The DESCRIPTION file:
+%\packageDESCRIPTION{findr}
+%\packageIndices{findr}
 
-This is the R package of findr. It contains findr C library, part of GNU Scientific Library (GSL), and the R interface. Findr is a C library intended for the inference of gene regulatory network structures. Currently findr only contains the inference of pairwise regulation, with or without the assistance of genotype data. Functions to reconstruct gene regulation networks will be added in future releases. Findr has been shown to be more accurate but hundreds to thousands of times faster than existing methods (Wang and Michoel, 2016), from its methodology and implementation advances.
+This is the R package of findr. It contains findr C library, part of GNU Scientific Library (GSL), and the R interface. Findr is a C library intended for the inference of gene regulatory network structures. Findr performs causal inferences of pairwise gene regulations based on genotype and gene expression datasets or from gene expression dataset alone. Findr then bases on the causal inference results as prior edge information to construct a directed acyclic graph. A sparse Bayesian network can then be inferred with the R package lassopv to produce the p-value of every possible regulation. Methodologies can be found in publication (Wang and Michoel, 2016, Wang and Michoel, 2017).
 
 For a complete manual, see: https://github.com/lingfeiwang/findr/blob/master/doc.pdf.
 
@@ -50,17 +50,24 @@ findr.pij_gassist
 findr.pij_gassist_trad
 
 findr.pijs_gassist
+
+
+
+The reconstruction of a directed acyclic graph, based on the output of above pairwise function, can obtained from the following function:
+
+findr.netr_one_greedy
 }
 \author{
-\packageAuthor{findr}
+Lingfei Wang <Lingfei.Wang.github@outlook.com>
 
-Maintainer: \packageMaintainer{findr}
+Maintainer:  Lingfei Wang <Lingfei.Wang.github@outlook.com>
 }
 \references{
-Lingfei Wang and Tom Michoel, Efficient causal inference with hidden confounders from
-  genome-transcriptome variation data (In preparation). 2016.
+Lingfei Wang and Tom Michoel, Efficient causal inference with hidden confounders from genome-transcriptome variation data (submitted). 2016.
+
+Lingfei Wang and Tom Michoel, Scalable causal gene network inference with prior node ordering and posterior FDR control (submitted). 2017.
 }
-\keyword{ package }
+\keyword{package}
 \examples{
 library(findr)
 data(geuvadis)
@@ -70,6 +77,10 @@ a=findr.lib(loglv=12)
 ans1=findr.pij_rank(geuvadis$dt,geuvadis$dt2)
 # Predict pairwise regulation with genotype data with recommended test combination
 ans2=findr.pij_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
-# Predict pairwise regulation with genotype data with all tests. User needs to combine test results on their own from findr output.
+# Predict pairwise regulation with genotype data with all tests,
+# only if User needs to combine test results on their own from findr output.
 ans3=findr.pijs_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+# Construct maximal directed acyclic graph based on pairwise edge significance
+ans4=findr.netr_one_greedy(ans2[1:dim(ans2)[1],1:dim(ans2)[1]])
+
 }

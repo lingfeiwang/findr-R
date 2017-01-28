@@ -5,7 +5,9 @@ include Makefile.auto
 all:
 	export &> t.log
 	cd $(DIR_GSL) && ./configure && $(MAKE)
-	env DIR_SRC_GSL=../$(DIR_GSL) CFLAGS_EXTRA="-DLIBEXTENSION_R=1" $(MAKE) -e -C $(DIR_LIB)
+	cfextra="$$(R CMD config --cppflags)"; \
+	[ "$$?" -eq "0" ] || exit 1; \
+	env DIR_SRC_GSL=../$(DIR_GSL) CFLAGS_EXTRA="$$cfextra -DLIBEXTENSION_R=1" $(MAKE) -e -C $(DIR_LIB)
 	mv $(DIR_LIB)/*.so ./
 
 distclean:

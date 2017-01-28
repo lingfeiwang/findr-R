@@ -25,7 +25,7 @@ Findr library initialization
 This function loads findr library and initializes it with provided log level, initial random seed, and maximum thread count.
 }
 \usage{
-findr.lib(loglv = 6, rs = 0, nth = 0)
+findr.lib(loglv = 6, rs = NULL, nth = NULL)
 }
 %- maybe also 'usage' for other objects documented here.
 \arguments{
@@ -35,10 +35,10 @@ Log level of library findr. Only messages whose levels are not greater than the 
 Note: logging is incompatible and unavailable on Windows RGui. On RGui, only return value indicates if the execution is successful. Rterm on Windows supports logging.
 }
   \item{rs}{
-Initial random seed. Zero means to use current time.
+Initial random seed. NULL means to use current time.
 }
   \item{nth}{
-Maximum number of parrallel threads in calculation. For best performance, this should not exceed the number of CPU cores. Default value zero indicates using the number of cores automatically detected, which is not always accurate.
+Maximum number of parrallel threads in calculation. For best performance, this should not exceed the number of CPU cores. Default value NULL indicates using the number of cores automatically detected, which is not always accurate.
 }
 }
 \examples{

@@ -40,7 +40,7 @@ When A and B are the same, log likelihood ratio between alternative and null hyp
 }
 }
 \value{
-\item{p}{Output matrix of inferred probability of correlation A- - -B versus no correlation A    B in matrix format. Element [i,j] is the probability of gene i being correlated with gene j. The matrix has dimension (nt,nt2).}
+Output matrix of inferred probability of correlation A- - -B versus no correlation A    B in matrix format. Element [i,j] is the probability of gene i being correlated with gene j. The matrix has dimension (nt,nt2).
 }
 \note{
 The methodology is to first calculate the log likelihood ratio (LLR) between each pair of A and B, and then convert the LLRs into probabilities for each A against all Bs.

@@ -3,7 +3,6 @@ include Makefile.auto
 .PHONY: all gsl lib
 
 all:
-	export &> t.log
 	cd $(DIR_GSL) && ./configure && $(MAKE)
 	cfextra="$$(R CMD config --cppflags)"; \
 	[ "$$?" -eq "0" ] || exit 1; \

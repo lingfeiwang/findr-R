@@ -27,6 +27,26 @@ extern "C"
 {
 #endif
 
+/* Estimates the p-value of A  B against A->B from genotype and expression data with 5 tests.
+ * E is always the best eQTL of A. Full data is required.
+ * g:	(ng,ns) Genotype data, =0,1,...,nv-1. Each is the best eQTL of the corresponding gene in t.
+ * t:	(ng,ns) Expression data of A.
+ * t2:	(nt,ns) Expression data of B. Can be A or a superset of A.
+ * p1:	(ng) P-values of step 1. Tests E->A v.s. E  A.
+ * p2:	(ng,nt) P-values of step 2. Tests E->B v.s. E  B.
+ * p3:	(ng,nt) P-values of step 3. Tests E->A->B v.s. E->A->B with E->B.
+ * p4:	(ng,nt) P-values of step 4. Tests E->A->B with E->B v.s. E->A  B.
+ * p5:	(ng,nt) P-values of step 5. Tests E->A->B with E->B v.s. A<-E->B.
+ * nv:	Number of possible values each genotype entry may take, =number of alleles+1.
+ * memlimit:	The function is able to split very large datasets (ng and nt) into smaller chunks for inference. This variable specifies the approximate memory usage limit. Note: For large datasets, a too small memory limit can fail the function. For unlimited memory, set memlimit=-1.
+ * Return:	0 on sucess
+ * Appendix:
+ * 		ng:	Number of genes with best eQTL.
+ * 		nt:	Number of genes with expression data for B
+ * 		ns:	Number of samples.
+ */
+int pijs_gassist_pv(const MATRIXG* g,const MATRIXF* t,const MATRIXF* t2,VECTORF* p1,MATRIXF* p2,MATRIXF* p3,MATRIXF* p4,MATRIXF* p5,size_t nv,size_t memlimit);
+
 /* Estimates the probability of A->B from genotype and expression data with 5 tests.
  * E is always the best eQTL of A. Full data is required.
  * g:	(ng,ns) Genotype data, =0,1,...,nv-1. Each is the best eQTL of the corresponding gene in t.

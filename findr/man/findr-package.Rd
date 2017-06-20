@@ -41,6 +41,16 @@ findr.lib
 
 
 
+The p-value of pairwise gene regulation can be inferred with any of the following functions. This can be more accurate than probabilities when the number of secondary targets is small ( several hundred or less ):
+
+findr.pij_rank_pv
+
+findr.pijs_gassist_pv
+
+findr.pijs_cassist_pv
+
+
+
 The probability of pairwise gene regulation can be inferred with any of the following functions:
 
 findr.pij_rank
@@ -50,6 +60,12 @@ findr.pij_gassist
 findr.pij_gassist_trad
 
 findr.pijs_gassist
+
+findr.pij_cassist
+
+findr.pij_cassist_trad
+
+findr.pijs_cassist
 
 
 
@@ -73,14 +89,24 @@ library(findr)
 data(geuvadis)
 # Library initialization
 a=findr.lib(loglv=12)
+
 # Predict pairwise correlation without genotype data
 ans1=findr.pij_rank(geuvadis$dt,geuvadis$dt2)
+
 # Predict pairwise regulation with genotype data with recommended test combination
 ans2=findr.pij_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+
 # Predict pairwise regulation with genotype data with all tests,
 # only if User needs to combine test results on their own from findr output.
 ans3=findr.pijs_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
-# Construct maximal directed acyclic graph based on pairwise edge significance
-ans4=findr.netr_one_greedy(ans2[1:dim(ans2)[1],1:dim(ans2)[1]])
 
+# Or similarly with continuous anchor instead of eQTLs
+ans4=findr.pij_cassist(geuvadis$dc,geuvadis$dt,geuvadis$dt2)
+
+# Construct maximal directed acyclic graph based on pairwise edge significance
+ans5=findr.netr_one_greedy(ans2[1:dim(ans2)[1],1:dim(ans2)[1]])
+
+# P-values can also be obtained, allowing more accurate results with limited secondary 
+# targets, and allowing downstream FDR control with other packages e.g. qvalue or fdrtool
+ans6=findr.pijs_gassist_pv(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
 }

@@ -15,7 +15,7 @@
 % You should have received a copy of the GNU Affero General Public License
 % along with Findr.  If not, see <http://www.gnu.org/licenses/>.
 % 
-\name{findr.pijs_gassist_*}
+\name{findr.pijs_gassist}
 \alias{findr.pijs_gassist}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
@@ -30,7 +30,7 @@ findr.pijs_gassist(dg, dt, dt2, na = NULL, nodiag = FALSE)
 %- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{dg}{
-Input matrix of best eQTL genotype data E(A), each row of which is the best eQTL of the corresponding row of t. Data is in matrix format. Element [i,j] is the genotype value of the best eQTL of gene i of sample j, and should be among values 0,1,...,na. The matrix has dimension (nt,ns).
+Input matrix of best eQTL genotype data E(A), each row of which is the best eQTL of the corresponding row of dt. Data is in matrix format. Element [i,j] is the genotype value of the best eQTL of gene i of sample j, and should be among values 0,1,...,na. The matrix has dimension (nt,ns).
 }
   \item{dt}{
 Input matrix of expression levels of A in matrix format. Element [i,j] is the expression level of gene i of sample j. The matrix has dimension (nt,ns).
@@ -67,6 +67,10 @@ findr.pij_rank
 findr.pij_gassist
 
 findr.pij_gassist_trad
+
+findr.pijs_gassist_pv
+
+findr.pijs_cassist
 }
 \examples{
 library(findr)

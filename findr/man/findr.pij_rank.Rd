@@ -58,6 +58,12 @@ findr.pij_gassist
 findr.pij_gassist_trad
 
 findr.pijs_gassist
+
+findr.pij_cassist
+
+findr.pij_cassist_trad
+
+findr.pijs_cassist
 }
 \examples{
 library(findr)

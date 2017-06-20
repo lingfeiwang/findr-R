@@ -21,20 +21,10 @@
 #include <math.h>
 #include <float.h>
 #include <string.h>
-#include "../../base/gsl/math.h"
-#include "../../base/gsl/histogram.h"
-#include "../../base/gsl/blas.h"
 #include "../../base/logger.h"
 #include "../../base/macros.h"
 #include "../../base/data_process.h"
-#include "../../base/histogram.h"
-#include "../nullmodeler.h"
-#include "../nullsampler.h"
-#include "../nullhist.h"
-#include "../llrtopij.h"
 #include "llrtopij.h"
-
-#pragma GCC diagnostic ignored "-Wunused-parameter"
 
 
 int pij_gassist_llrtopij1_1(VECTORF* p1)

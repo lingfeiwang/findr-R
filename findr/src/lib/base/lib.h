@@ -35,9 +35,12 @@ void lib_init(unsigned char loglv,unsigned long rs,size_t nthread);
 /* Returns library name
  */
 const char* lib_name();
-/* Returns library version in a.b.c format
+/* Returns library version in a.b.c format, or a, b, or c, for subfunctions ending with 1, 2, or 3 respectively.
  */
 const char* lib_version();
+size_t lib_version1();
+size_t lib_version2();
+size_t lib_version3();
 
 #ifdef __cplusplus
 }

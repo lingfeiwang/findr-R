@@ -79,7 +79,7 @@ Lingfei Wang <Lingfei.Wang.github@outlook.com>
 Maintainer:  Lingfei Wang <Lingfei.Wang.github@outlook.com>
 }
 \references{
-Lingfei Wang and Tom Michoel, Efficient causal inference with hidden confounders from genome-transcriptome variation data (submitted). 2016.
+Lingfei Wang and Tom Michoel (2017) Efficient and accurate causal inference with hidden confounders from genome-transcriptome variation data. PLOS Computational Biology 13(8): e1005703. https://doi.org/10.1371/journal.pcbi.1005703
 
 Lingfei Wang and Tom Michoel, Scalable causal gene network inference with prior node ordering and posterior FDR control (submitted). 2017.
 }

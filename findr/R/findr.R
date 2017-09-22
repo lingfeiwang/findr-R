@@ -421,12 +421,12 @@ findr.netr_one_greedy=function(dp,namax=NULL,nimax=NULL,nomax=NULL) {
 	if(!is.null(nimax))
 	{
 		if(length(nimax)>1)
-			stop('Length of namax must be 1.')
+			stop('Length of nimax must be 1.')
 		niv=as.integer(nimax)
 		if(niv!=nimax)
 			stop('Data type of nimax is not integer.')
 		if(niv<=0)
-			stop('namax must be positive')
+			stop('nimax must be positive')
 	}
 	else
 	{niv=0}
@@ -434,12 +434,12 @@ findr.netr_one_greedy=function(dp,namax=NULL,nimax=NULL,nomax=NULL) {
 	if(!is.null(nomax))
 	{
 		if(length(nomax)>1)
-			stop('Length of namax must be 1.')
+			stop('Length of nomax must be 1.')
 		nov=as.integer(nomax)
 		if(nov!=nomax)
 			stop('Data type of nomax is not integer.')
 		if(nov<=0)
-			stop('namax must be positive')
+			stop('nomax must be positive')
 	}
 	else
 	{nov=0}

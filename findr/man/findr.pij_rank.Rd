@@ -22,7 +22,7 @@
 Predict pairwise regulation probability with expression data
 }
 \description{
-Inference of pairwise correlation A- - -B probability between gene sets {A} and {B}, with expression data only, by converting log likelihood ratios to probabilities per A.
+Inference of pairwise correlation A- - -B probability between gene sets {A} and {B}, with expression data only.
 }
 \usage{
 findr.pij_rank(dt, dt2, nodiag = FALSE)
@@ -68,7 +68,5 @@ findr.pijs_cassist
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pij_rank(geuvadis$dt,geuvadis$dt2)
+ans=findr.pij_rank(geuvadis$dt,geuvadis$dt2,nodiag=TRUE)
 }

@@ -19,7 +19,7 @@
 \alias{findr.pijs_cassist_pv}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Predict pairwise regulation p-values with expression and eQTL data
+Predict pairwise regulation p-values with expression data and continuous causal anchors
 }
 \description{
 Inference of regulation E(A)->A->B p-values with expression data of A,B and continuous anchor data for A as E(A). This is similar with using eQTL but treats E(A) as a continuous variable. For highest precision, the user should not pre-select secondary target genes (B), but instead include as many B's of the same type as possible, and pick the gene pairs of interest only after Findr's calculation.
@@ -65,7 +65,5 @@ findr.pij_rank_pv
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pijs_cassist_pv(geuvadis$dc,geuvadis$dt,geuvadis$dt2)
+ans=findr.pijs_cassist_pv(geuvadis$dc,geuvadis$dmi,geuvadis$dt2)
 }

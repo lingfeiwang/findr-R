@@ -1,2 +1,2 @@
 findr.pkgname="findr"
-findr.pkgversion="1.0.1"
+findr.pkgversion="1.0.3"

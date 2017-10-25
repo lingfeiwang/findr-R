@@ -75,7 +75,5 @@ findr.pijs_cassist
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pijs_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans=findr.pijs_gassist(geuvadis$dgmi,geuvadis$dmi,geuvadis$dt2)
 }

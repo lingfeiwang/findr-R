@@ -68,7 +68,5 @@ findr.pij_rank_pv
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pijs_gassist_pv(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans=findr.pijs_gassist_pv(geuvadis$dg,geuvadis$dmi,geuvadis$dt2)
 }

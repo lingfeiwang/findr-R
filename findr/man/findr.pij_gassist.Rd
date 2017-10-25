@@ -25,9 +25,10 @@ Predict pairwise regulation probability with expression and eQTL data
 \description{
 Inference of regulation E(A)->A->B probability with expression data of A,B and best eQTL data for A as E(A). For highest precision, the user should not pre-select secondary target genes (B), but instead include as many B's of the same type as possible, and pick the gene pairs of interest only after Findr's calculation. This function does not include p1.
 
-findr.pij\_gassist performs our recommeneded combination of tests.
 
-findr.pij\_gassist\_trad performs traditional causal inference test, but is not and is not intended as a reimplementation of Trigger package.
+findr.pij\_gassist performs the novel combination of causal inference tests.
+
+findr.pij\_gassist\_trad performs traditional combination of causal inference tests, but is not and is not intended as a reimplementation of Trigger package.
 }
 \usage{
 findr.pij_gassist(dg, dt, dt2, na = NULL, nodiag = FALSE)
@@ -75,7 +76,5 @@ findr.pij_cassist_trad
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pij_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
+ans=findr.pij_gassist(geuvadis$dgmi,geuvadis$dmi,geuvadis$dt2)
 }

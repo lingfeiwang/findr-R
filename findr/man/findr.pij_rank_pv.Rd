@@ -22,7 +22,7 @@
 Predict pairwise regulation p-value with expression data
 }
 \description{
-Inference of pairwise correlation A- - -B p-value between gene sets {A} and {B}, with expression data only, by converting log likelihood ratios to p-values per A.
+Inference of pairwise correlation A- - -B p-value between gene sets {A} and {B}, with expression data only.
 }
 \usage{
 findr.pij_rank_pv(dt, dt2)
@@ -37,10 +37,10 @@ Input matrix of expression levels of B in matrix format. Element [i,j] is the ex
 }
 }
 \value{
-Output matrix of inferred probability of correlation A- - -B versus no correlation A    B in matrix format. Element [i,j] is the probability of gene i being correlated with gene j. The matrix has dimension (nt,nt2).
+Output matrix of inferred probability of correlation A- - -B versus no correlation A    B in matrix format. Element [i,j] is the p-value of gene i being correlated with gene j. The matrix has dimension (nt,nt2).
 }
 \note{
-The methodology is to first calculate the log likelihood ratio (LLR) between each pair of A and B, and then convert the LLRs into p-values.
+After normalization, the function first calculates the log likelihood ratio or equivalently Pearson correlation between each pair of A and B, and then converts them into p-values.
 
 nt: Number of genes for A.
 
@@ -59,7 +59,5 @@ findr.pijs_cassist_pv
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
 ans=findr.pij_rank_pv(geuvadis$dt,geuvadis$dt2)
 }

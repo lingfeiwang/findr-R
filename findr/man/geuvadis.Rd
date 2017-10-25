@@ -19,16 +19,22 @@
 \name{geuvadis}
 \alias{geuvadis}
 \title{Part of expression and best eQTL data from GEUVADIS}
-\format{A list with 3 variables:
+\format{A list with the following variables:
 \itemize{
-  \item dt: miRNA expression data for targets A as a matrix (10,360)
-  \item dt2: gene expression data for targets B as a matrix (3000,360)
-  \item dg: genotype data for best eQTLs of targets A as a matrix (10,360)
+  \item dgmi: haplotypes of the best cis-eQTLs of 10 miRNAs
+  \item dmi: expression levels of 10 miRNAs
+  \item dgt: haplotypes of the best cis-eQTLs of 1000 genes
+  \item dt: expression levels of 1000 genes that have cis-eQTLs
+  \item dt2: expression levels of all 3000 genes
+  \item dc: continuous causal anchors for demonstration purposes, simulated from adding continuous noise to dgmi
 }}
 \usage{
 data(geuvadis)
 }
 \source{\href{http://www.geuvadis.org/}{GEUVADIS Consortium}}
-\description{Part of miRNA, gene expression, and best eQTL data for 360 EUR individuals from GEUVADIS Consortium.
+\description{The dataset is downsampled from the Geuvadis study, including expression levels of 10 miRNAs and 3000 genes for 360 European individuals. Among them, all miRNAs and 1000 genes have significant cis-eQTLs, whose haplotypes are also included.
+}
+\references{
+Lappalainen, T. et al. Transcriptome and genome sequencing uncovers functional variation in humans. Nature 501, 506–511 (2013).
 }
 \keyword{datasets}

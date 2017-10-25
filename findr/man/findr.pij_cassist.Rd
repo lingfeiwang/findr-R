@@ -20,14 +20,14 @@
 \alias{findr.pij_cassist_trad}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Predict pairwise regulation probability with expression and eQTL data
+Predict pairwise regulation probability with expression data and continuous causal anchors
 }
 \description{
 Inference of regulation E(A)->A->B probability with expression data of A,B and continuous anchor data for A as E(A). This is similar with using eQTL but treats E(A) as a continuous variable. For highest precision, the user should not pre-select secondary target genes (B), but instead include as many B's of the same type as possible, and pick the gene pairs of interest only after Findr's calculation. This function does not include p1.
 
-findr.pij\_cassist performs our recommeneded combination of tests.
+findr.pij\_cassist performs the novel combination of causal inference tests.
 
-findr.pij\_cassist\_trad performs traditional causal inference test, but is not and is not intended as a reimplementation of Trigger package.
+findr.pij\_cassist\_trad performs traditional combination of causal inference tests.
 }
 \usage{
 findr.pij_cassist(dc, dt, dt2, nodiag = FALSE)
@@ -72,7 +72,5 @@ findr.pij_gassist_trad
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-ans=findr.pij_cassist(geuvadis$dc,geuvadis$dt,geuvadis$dt2)
+ans=findr.pij_cassist(geuvadis$dc,geuvadis$dmi,geuvadis$dt2)
 }

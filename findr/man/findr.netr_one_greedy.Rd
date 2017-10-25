@@ -19,7 +19,7 @@
 \alias{findr.netr_one_greedy}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Reconstruct directed acyclic graphs
+Reconstruct directed acyclic graphs with greedy algorithm
 }
 \description{
 Reconstruction of a single directed acyclic graph from the given edge significance prior by adding the most significant edge one at a time, whilst avoiding cycles. As an example, the prior edge significant can be obtained from pairiwise inference from findr.pij_gassist or findr.pij_rank.
@@ -56,9 +56,6 @@ findr.pij_rank
 \examples{
 library(findr)
 data(geuvadis)
-# Library initialization
-a=findr.lib(loglv=12)
-prior=findr.pij_gassist(geuvadis$dg,geuvadis$dt,geuvadis$dt2)
-prior=prior[1:dim(prior)[1],1:dim(prior)[1]]
+prior=findr.pij_gassist(geuvadis$dgt,geuvadis$dt,geuvadis$dt,nodiag=TRUE)
 net=findr.netr_one_greedy(prior)
 }

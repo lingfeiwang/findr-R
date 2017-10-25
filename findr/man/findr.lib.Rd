@@ -19,7 +19,7 @@
 \alias{findr.lib}
 %- Also NEED an '\alias' for EACH other topic documented here.
 \title{
-Findr library initialization
+Findr library (re-)initialization
 }
 \description{
 This function loads findr library and initializes it with provided log level, initial random seed, and maximum thread count.
@@ -27,12 +27,9 @@ This function loads findr library and initializes it with provided log level, in
 \usage{
 findr.lib(loglv = 6, rs = NULL, nth = NULL)
 }
-%- maybe also 'usage' for other objects documented here.
 \arguments{
   \item{loglv}{
 Log level of library findr. Only messages whose levels are not greater than the designated log level will be printed. Level 0: critical, 1-3: errors, 4-6: warnings, 7-9: information, 10-12: debug. Default value is level 6.
-
-Note: logging is incompatible and unavailable on Windows RGui. On RGui, only return value indicates if the execution is successful. Rterm on Windows supports logging.
 }
   \item{rs}{
 Initial random seed. NULL means to use current time.
@@ -42,9 +39,9 @@ Maximum number of parrallel threads in calculation. For best performance, this s
 }
 }
 \examples{
-# For more detailed log
 library(findr)
+# Verbose
 findr.lib(loglv = 12)
-# Single threaded
+# Single thread
 findr.lib(nth = 1)
 }

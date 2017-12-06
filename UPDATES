@@ -1,5 +1,7 @@
 For detailed updates in findr library functionality, see UPDATES in findr library.
 
+1.0.5:
+	Account for the unformatted warning message in "R CMD config --cppflags" when R_HOME is set.
 1.0.3:
 	Updated examples and documentation.
 1.0.0:

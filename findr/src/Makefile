@@ -4,9 +4,9 @@ include Makefile.auto
 
 all:
 	cd $(DIR_GSL) && ./configure && $(MAKE)
-	cfextra="$$(R CMD config --cppflags)"; \
+	cfextra="$$(env R_HOME= R CMD config --cppflags)"; \
 	[ "$$?" -eq "0" ] || exit 1; \
-	$(MAKE) DIR_SRC_GSL=../$(DIR_GSL) CFLAGS_EXTRA="$$cfextra -DLIBEXTENSION_R=1" LDFLAGS_EXTRA="$$LDFLAGS $$(R CMD config --ldflags)" -C $(DIR_LIB)
+	$(MAKE) DIR_SRC_GSL=../$(DIR_GSL) CFLAGS_EXTRA="$$cfextra -DLIBEXTENSION_R=1" LDFLAGS_EXTRA="$$LDFLAGS $$(env R_HOME= R CMD config --ldflags)" -C $(DIR_LIB)
 	mv $(DIR_LIB)/*.so ./
 
 distclean:

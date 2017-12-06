@@ -15,7 +15,7 @@ URL_BIN_REL="$(URL_BIN)/releases"
 URL_R_REL="$(URL_R)/releases"
 VERSION1=1
 VERSION2=0
-VERSION3=4
+VERSION3=5
 LICENSE=AGPL-3
 LICENSE_FULL="GNU Affero General Public License, Version 3"
 LICENSE_URL="https://www.gnu.org/licenses/agpl-3.0"
@@ -139,7 +139,7 @@ TMP_FILE=.tmp
 Makefile.flags:
 	@echo "Testing gcc"
 	$(CC) --version &> /dev/null || ( echo "GCC not found. Please download the latest GCC or specify its location in CC variable in Makefile."; exit 1; )
-	gver=$$($(CC) --version) ; \
+	gver="$$($(CC) --version)"; \
 	t1=$$(echo "$$gver" | grep -io gcc); \
 	if ! [ -n "$$t1" ]; then echo "Invalid GCC version. Please download the latest GCC."; exit 1; fi
 	cflags="$(CFLAGS) $(CFLAGS_EXTRA) $(CFLAGSI) -fopenmp -ggdb -fPIC -Wall -Wextra -Wconversion -Wsign-conversion -Wundef -Wendif-labels -std=c99 -pedantic-errors $(OPTFLAGS)"; \

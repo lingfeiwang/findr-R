@@ -1,7 +1,7 @@
 Package: findr
 Type: Package
 Title: Fast Inference of Networks from Directed Regulations
-Version: 1.0.5
+Version: 1.0.6
 Author: Lingfei Wang <Lingfei.Wang.github@outlook.com>
 Maintainer: Lingfei Wang <Lingfei.Wang.github@outlook.com>
 Description: This is an R package of findr library. Findr (Fast Inference of Networks from Directed Regulations) is a C library for the inference of gene regulatory network structure. Findr performs causal inferences of pairwise gene regulations based on genotype and gene expression datasets or from gene expression dataset alone. Findr then bases on the causal inference results as prior edge information to construct a directed acyclic graph. A sparse Bayesian network can then be inferred with the R package lassopv to produce the p-value of every possible regulation. Methodologies can be found in publication (Wang and Michoel, 2016, Wang and Michoel, 2017).

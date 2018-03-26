@@ -1,5 +1,7 @@
 For detailed updates in findr library functionality, see UPDATES in findr library.
 
+1.0.7:
+	Added compatibility warning for interface changes in future versions.
 1.0.6:
 	Corrected a bug that may produce biased output in pij_gassist, pij_gassist_trad, and pijs_gassist when nodiag is set.
 	Added sanity checks for agreement between input data and nodiag flag for pij functions excluding _pv (suggested by sritchie73@github).

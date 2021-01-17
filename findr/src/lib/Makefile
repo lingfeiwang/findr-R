@@ -148,35 +148,35 @@ uninstall:
 TMP_FILE=.tmp
 Makefile.flags:
 	@echo "Testing gcc"
-	if ! $(CC) --version > /dev/null 2>&1; then echo "GCC not found. Please download the latest GCC or specify its location in CC variable in Makefile."; exit 1; fi
+	if ! $(CC) --version; then echo "GCC not found. Please download the latest GCC or specify its location in CC variable in Makefile."; exit 1; fi
 	gver="$$($(CC) --version)"; \
 	t1=$$(echo "$$gver" | grep -io gcc); \
 	if ! [ -n "$$t1" ]; then echo "Invalid GCC version. Please download the latest GCC."; exit 1; fi
 	cflags="$(CFLAGS) $(CFLAGS_EXTRA) $(CFLAGSI) -fopenmp -ggdb -fPIC -Wall -Wextra -Wconversion -Wsign-conversion -Wundef -Wendif-labels -std=c99 $(OPTFLAGS)"; \
 	ldflags="$(LDFLAGS) $(LDFLAGS_EXTRA) -L $(PREFIX)/lib -L /usr/local/lib -L /usr/lib -fopenmp -lm -shared -lc"; \
 	echo "Testing test method"; \
-	if ! $(LD) $$ldflags -o $(TMP_FILE) > /dev/null 2>&1; then \
+	if ! $(LD) $$ldflags -o $(TMP_FILE); then \
 	echo "Linking with default flags failed."; exit 1; fi; \
 	echo "Testing gfortran"; \
-	$(LD) $$ldflags -lgfortran -o $(TMP_FILE) > /dev/null 2>&1 && \
+	$(LD) $$ldflags -lgfortran -o $(TMP_FILE) && \
 	ldflags="$$ldflags -lgfortran"; \
 	echo "Testing local GSL" ; \
 	if [ -n "$(DIR_SRC_GSL)" ] ; then \
 		echo "Testing -Wl,--whole-archive" ; \
 		ldflags2="$(DIR_SRC_GSL)/.libs/libgsl.a $(DIR_SRC_GSL)/cblas/.libs/libgslcblas.a"; \
-		$(LD) $$ldflags "-Wl,--whole-archive $$ldflags2 -Wl,--no-whole-archive" --shared -o $(TMP_FILE) > /dev/null 2>&1 && \
+		$(LD) $$ldflags "-Wl,--whole-archive $$ldflags2 -Wl,--no-whole-archive" --shared -o $(TMP_FILE) && \
 			ldflags2="-Wl,--whole-archive $$ldflags2 -Wl,--no-whole-archive"; \
-		if ! $(LD) $$ldflags $$ldflags2 --shared -o $(TMP_FILE) > /dev/null 2>&1; then \
+		if ! $(LD) $$ldflags $$ldflags2 --shared -o $(TMP_FILE); then \
 			echo "Can't link to embedded GSL with right flag." ; exit 1; fi; \
 		cflags="-I $(DIR_SRC_GSL) $$cflags" ; \
 		ldflags="$$ldflags $$ldflags2" ; \
 	else \
 		ldflags="$$ldflags -lgsl -lgslcblas"; \
-		if ! $(LD) $$ldflags --shared -o $(TMP_FILE) > /dev/null 2>&1; then \
+		if ! $(LD) $$ldflags --shared -o $(TMP_FILE); then \
 		echo "Link to installed GSL failed."; exit 1; fi; \
 	fi ; \
 	echo "Testing -Wl,--no-as-needed" ; \
-	$(LD) -Wl,--no-as-needed $$ldflags --shared -o $(TMP_FILE) > /dev/null 2>&1 && \
+	$(LD) -Wl,--no-as-needed $$ldflags --shared -o $(TMP_FILE) && \
 	ldflags="-Wl,--no-as-needed $$ldflags"; \
 	echo "CFLAGS=$$cflags" > $@ && \
 	echo "LDFLAGS=$$ldflags" >> $@ && \
